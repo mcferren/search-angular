@@ -1,0 +1,13 @@
+.user-container {
+    padding: 10px
+}
+
+.user-container:hover {
+    background: #ccc;
+    cursor: pointer;
+}
+
+img {
+    border-radius: 50%;
+    height: 80px;
+}

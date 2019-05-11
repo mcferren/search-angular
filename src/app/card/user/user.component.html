@@ -1,0 +1,22 @@
+<div class="user-container"
+     (click)=handleClick()>
+     
+  <div style="margin-bottom: 10px">
+    <em>description: </em>
+    <span>{{userobj.login}}</span>
+  </div>
+
+  <div style="margin-bottom: 10px">
+    <em>star count: </em>
+    <span>{{starCount}}</span>
+  </div>
+
+  <div style="margin-bottom: 10px">
+    <em>follower count: </em>
+    <span>{{followerCount}}</span>
+  </div>
+
+  <img [src]="userobj.avatar_url">
+
+  <hr>
+</div>
