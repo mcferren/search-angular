@@ -24,11 +24,11 @@ export class UrlService {
 
   public fetchStarUrl( user : string) : string {
     
-    return `${this.rootB}${user}/followers`;
+    return `${this.rootB}${user}/starred`;
   }
 
   public fetchFollowerUrl( user : string) : string {
     
-    return `${this.rootB}${user}/starred`;
+    return `${this.rootB}${user}/followers`;
   }
 }

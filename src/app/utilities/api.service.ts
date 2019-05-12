@@ -49,4 +49,23 @@ export class ApiService {
     return this.http.get( this.url.fetchFollowerUrl( user ) )
                .pipe( map( ( x : any[] )=> x.length ) );      
   }
+
+  public manufacturePagination( page : number, totalCount : number, perPage : number ) : number[] {
+
+      const totalPagBoxes = Math.round( totalCount / perPage );
+      
+      let returnArray = [ page ];
+
+      while( returnArray.length < 4 && returnArray.slice(-1)[0] < totalPagBoxes ) { 
+               
+        returnArray.push( returnArray.slice(-1)[0] + 1 ); 
+      }
+
+      while( returnArray.length < 7 && returnArray[0] > 1 ) { 
+               
+        returnArray.unshift( returnArray[0] - 1 ); 
+      }
+
+      return returnArray;
+  }
 }

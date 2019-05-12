@@ -15,7 +15,7 @@
 }
 
 .pag-block:hover {
-    background: #ccc;
+    background: #ccc !important;
 }
 
 .user-container {

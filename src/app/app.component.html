@@ -2,7 +2,7 @@
 
 <input [(ngModel)]="input">
 
-<button (click)="api.fetchUsers(input, page)">Search</button>
+<button (click)="handleSearchButtonClick()">Search</button>
 
 <span *ngIf="(api.userChannel | async)?.items?.length > 0">
     total: {{(api.userChannel | async)?.total_count}}
@@ -18,13 +18,17 @@
 
 <span *ngIf="(api.userChannel | async)?.items?.length > 0">
     <ul>
-        <li *ngFor="let link of paginationLinks; let i = index"
-            (click)="handlePaginationClick(i + 1)"
-            [ngStyle]="{'background': i + 1 == page ? '#000' : '#fff',
-                        'color': i + 1 == page ? '#fff' : '#000' }"
+        <li *ngFor="let linknum of paginationLinks;"
+            (click)="handlePaginationClick(linknum)"
+            [ngStyle]="{'background': linknum == page ? '#000' : '#fff',
+                        'color': linknum == page ? '#fff' : '#000' }"
             class="pag-block">
 
-            {{i + 1}}
+            {{linknum}}
         </li>
     </ul>
+    <em style="font-size: 9px">
+        * Only the first 1000 search results are available (per github api rules)<br>
+        * API rate limit for star and follower counts
+    </em>
 </span>

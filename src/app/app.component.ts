@@ -13,17 +13,15 @@ export class AppComponent {
   public paginationLinks : number[];
   private perPage : number = 30;
 
-  constructor(public api : ApiService ) {
+  constructor( public api : ApiService ) {
 
     this.page = 1;
 
     this.api.userChannel.subscribe( arg => {
 
       if( !arg ) { return; }
-
-      const quant = arg.total_count / this.perPage;
-
-      this.paginationLinks = Array( Math.round( quant ) );
+        
+      this.paginationLinks = this.api.manufacturePagination( this.page, arg.total_count, this.perPage );
     });
   }
 
@@ -34,5 +32,12 @@ export class AppComponent {
     this.page = i;
 
     this.api.fetchUsers(this.input, i)
+  }
+
+  public handleSearchButtonClick() {
+
+    this.api.fetchUsers(this.input, 1);
+
+    this.page = 1;
   }
 }

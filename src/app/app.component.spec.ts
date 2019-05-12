@@ -1,5 +1,9 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ApiService } from './utilities/api.service';
+import { FormsModule } from '@angular/forms';
+import { CardModule } from './card/card.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -7,6 +11,12 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      imports: [
+        HttpClientModule,
+        FormsModule,
+        CardModule
+      ],
+      providers: [ApiService]
     }).compileComponents();
   }));
 
@@ -16,16 +26,17 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'thisdot'`, () => {
+  it('should populate page', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('thisdot');
+    expect(app.page).toEqual(1);
   });
 
-  it('should render title in a h1 tag', () => {
+  it('should reset page after search button click', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to thisdot!');
+    const app = fixture.debugElement.componentInstance;
+    app.page = 10;
+    app.handleSearchButtonClick();
+    expect(app.page).toEqual(1);
   });
 });
